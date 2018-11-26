@@ -1,0 +1,21 @@
+
+spring:
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      properties:
+        isolation.level: read_committed
+    template:
+      default-topic: txn-jdbc-kafka
+    producer:
+      transaction-id-prefix: some-prefix-to-generate-id
+    listener:
+      idle-event-interval: 3s
+  datasource:
+    url: jdbc:mysql://localhost:3306/jdbckafka?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    data-password:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: create
